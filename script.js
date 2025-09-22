@@ -265,13 +265,13 @@ function startTimer() {
 
         // 残り時間の音声通知
         if (totalSeconds === 30 || totalSeconds === 10 || totalSeconds === 5) {
-            playBeep(600, 150);
+            playSound('button');
         }
 
         if (totalSeconds <= 0) {
             // タイマー終了
-            stopTimer();
             playSound('complete');
+            stopTimer();
             showTimeUpNotification();
         }
     }, 1000);
