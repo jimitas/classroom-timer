@@ -466,20 +466,6 @@ function showTimeUpNotification() {
     alert('⏰ 時間です！\n\nタイマーが終了しました。');
 }
 
-function toggleFullscreen() {
-    playSound('button');
-    const container = document.querySelector('.app-container');
-
-    if (container.classList.contains('fullscreen-mode')) {
-        // フルスクリーンを解除
-        container.classList.remove('fullscreen-mode');
-        document.querySelector('.fullscreen-btn').textContent = '🔳';
-    } else {
-        // フルスクリーンモードに
-        container.classList.add('fullscreen-mode');
-        document.querySelector('.fullscreen-btn').textContent = '❌';
-    }
-}
 
 // 通知許可の要求
 document.addEventListener('DOMContentLoaded', function() {
@@ -519,9 +505,6 @@ document.addEventListener('keydown', function(e) {
         resetAction();
     }
 
-    if (e.key === 'f' || e.key === 'F') {
-        toggleFullscreen();
-    }
 
     // モード切り替えショートカット
     if (e.key === 't' || e.key === 'T') {
