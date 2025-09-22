@@ -156,10 +156,10 @@ body.stopwatch-mode .toggle-label input[type="checkbox"]:checked + .toggle-slide
 }
 
 .timer-display {
-    font-size: 4rem;
+    font-size: 6rem;
     font-weight: 800;
     color: #2d3748;
-    margin: 2rem 0;
+    margin: 3rem 0;
     font-family: 'Monaco', 'Menlo', monospace;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
 }
@@ -174,49 +174,9 @@ body.stopwatch-mode .toggle-label input[type="checkbox"]:checked + .toggle-slide
     50% { opacity: 0.7; }
 }
 
-.preset-buttons {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 1rem;
-    margin-bottom: 2rem;
-}
-
-.preset-btn {
-    background: #667eea;
-    color: white;
-    border: none;
-    padding: 1rem 1.5rem;
-    border-radius: 12px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-}
-
-.preset-btn:hover {
-    background: #5a67d8;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-}
-
-/* ストップウォッチモード時のボタン色 */
-body.stopwatch-mode .preset-btn {
-    background: #2ecc71;
-    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
-}
-
-body.stopwatch-mode .preset-btn:hover {
-    background: #27ae60;
-    box-shadow: 0 6px 20px rgba(46, 204, 113, 0.4);
-}
-
-.preset-btn:active {
-    transform: translateY(0);
-}
 
 .custom-timer {
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
 }
 
 .time-inputs {
@@ -229,14 +189,14 @@ body.stopwatch-mode .preset-btn:hover {
 }
 
 .time-input {
-    width: 70px;
-    padding: 0.75rem;
+    width: 100px;
+    padding: 1rem;
     border: 2px solid #e2e8f0;
-    border-radius: 8px;
+    border-radius: 12px;
     text-align: center;
-    font-size: 1.3rem;
+    font-size: 1.8rem;
     font-weight: 600;
-    min-height: 48px;
+    min-height: 60px;
 }
 
 .time-input:focus {
@@ -246,9 +206,10 @@ body.stopwatch-mode .preset-btn:hover {
 }
 
 .time-separator {
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 700;
     color: #4a5568;
+    margin: 0 0.5rem;
 }
 
 .control-buttons {
@@ -347,17 +308,6 @@ body.stopwatch-mode .preset-btn:hover {
         font-size: 1.5rem;
     }
 
-    .preset-buttons {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.5rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .preset-btn {
-        padding: 0.6rem 1rem;
-        font-size: 0.85rem;
-        min-height: 44px;
-    }
 
     .control-btn {
         min-width: 100px;

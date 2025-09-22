@@ -12,7 +12,6 @@
 <body>
   <div class="app-container">
     <h1 class="app-title">⏰ タイマー</h1>
-    <p class="app-subtitle">授業・会議・集中時間に最適なタイマー＆ストップウォッチ</p>
 
     <div class="mode-switcher">
       <button class="mode-btn active" id="timerModeBtn" onclick="switchToTimer()">⏲️ タイマー</button>
@@ -22,17 +21,9 @@
     <div class="timer-display" id="timerDisplay">00分00秒</div>
 
     <div id="timerSection">
-      <div class="preset-buttons">
-        <button class="preset-btn" onclick="setTimer(5, 0)">⚡ 5分</button>
-        <button class="preset-btn" onclick="setTimer(10, 0)">📝 10分</button>
-        <button class="preset-btn" onclick="setTimer(20, 0)">💭 20分</button>
-        <button class="preset-btn" onclick="setTimer(45, 0)">📚 45分</button>
-      </div>
-
       <div class="custom-timer">
-        <h3 style="margin-bottom: 1rem; color: #4a5568;">⚙️ カスタム設定</h3>
         <div class="time-inputs">
-          <input type="number" class="time-input" id="minutes" min="0" max="99" value="0" placeholder="分">
+          <input type="number" class="time-input" id="minutes" min="0" max="99" value="5" placeholder="分">
           <span class="time-separator">分</span>
           <input type="number" class="time-input" id="seconds" min="0" max="59" value="0" placeholder="秒">
           <span class="time-separator">秒</span>

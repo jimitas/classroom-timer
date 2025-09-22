@@ -215,17 +215,6 @@ function resetAction() {
     }
 }
 
-// タイマー機能
-function setTimer(minutes, seconds = 0) {
-    playSound('button');
-    stopTimer();
-    totalSeconds = minutes * 60 + seconds;
-
-    document.getElementById('minutes').value = minutes;
-    document.getElementById('seconds').value = seconds;
-
-    updateDisplay();
-}
 
 function updateDisplay() {
     const minutes = Math.floor(totalSeconds / 60);
