@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>授業タイマー | Jimitas教育アプリ</title>
+  <meta name="description" content="授業で使いやすいタイマー・ストップウォッチアプリ。5分・10分・45分のプリセットタイマーと自由設定が可能。完全無料で利用できます。">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <button class="fullscreen-btn" onclick="toggleFullscreen()" title="フルスクリーンモード">
+    🔳
+  </button>
+
+  <div class="app-container">
+    <h1 class="app-title">⏰ タイマー</h1>
+    <p class="app-subtitle">授業・会議・集中時間に最適なタイマー＆ストップウォッチ</p>
+
+    <div class="mode-switcher">
+      <button class="mode-btn active" id="timerModeBtn" onclick="switchToTimer()">⏲️ タイマー</button>
+      <button class="mode-btn" id="stopwatchModeBtn" onclick="switchToStopwatch()">⏱️ ストップウォッチ</button>
+    </div>
+
+    <div class="timer-display" id="timerDisplay">00分00秒</div>
+
+    <div id="timerSection">
+      <div class="preset-buttons">
+        <button class="preset-btn" onclick="setTimer(5, 0)">⚡ 5分</button>
+        <button class="preset-btn" onclick="setTimer(10, 0)">📝 10分</button>
+        <button class="preset-btn" onclick="setTimer(20, 0)">💭 20分</button>
+        <button class="preset-btn" onclick="setTimer(45, 0)">📚 45分</button>
+      </div>
+
+      <div class="custom-timer">
+        <h3 style="margin-bottom: 1rem; color: #4a5568;">⚙️ カスタム設定</h3>
+        <div class="time-inputs">
+          <input type="number" class="time-input" id="minutes" min="0" max="99" value="0" placeholder="分">
+          <span class="time-separator">分</span>
+          <input type="number" class="time-input" id="seconds" min="0" max="59" value="0" placeholder="秒">
+          <span class="time-separator">秒</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="stopwatchSection" style="display: none;">
+      <div class="precision-toggle">
+        <label class="toggle-label">
+          <input type="checkbox" id="precisionToggle" onchange="togglePrecision()">
+          <span class="toggle-slider"></span>
+          <span class="toggle-text">0.1秒単位表示</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="control-buttons">
+      <button class="control-btn start-btn" id="startBtn" onclick="startAction()">▶️ スタート</button>
+      <button class="control-btn pause-btn" id="pauseBtn" onclick="pauseAction()" style="display: none;">⏸️ 一時停止</button>
+      <button class="control-btn stop-btn" id="stopBtn" onclick="stopAction()" style="display: none;">⏹️ ストップ</button>
+      <button class="control-btn reset-btn" onclick="resetAction()">🔄 リセット</button>
+    </div>
+
+    <div class="footer">
+      <p>📱 <strong>Jimitas</strong> - 地味に助かる学習コンテンツ</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

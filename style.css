@@ -1,0 +1,418 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Hiragino Sans', 'ヒラギノ角ゴシック', 'Yu Gothic Medium', '游ゴシック Medium', 'Yu Gothic', '游ゴシック', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+    transition: background 0.5s ease;
+}
+
+/* タイマーモード（デフォルト） */
+body.timer-mode {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* ストップウォッチモード */
+body.stopwatch-mode {
+    background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+}
+
+.app-container {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    min-width: 90vw;
+    max-width: 600px;
+}
+
+.app-title {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: #2c5aa0;
+    font-weight: 700;
+}
+
+.app-subtitle {
+    color: #718096;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+/* モード切り替えボタン */
+.mode-switcher {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.mode-btn {
+    padding: 0.75rem 1.5rem;
+    border: 2px solid #e2e8f0;
+    background: white;
+    color: #4a5568;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.mode-btn.active {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.mode-btn:hover:not(.active) {
+    background: #f7fafc;
+    border-color: #667eea;
+    color: #667eea;
+}
+
+/* ストップウォッチモード時のアクティブボタン */
+body.stopwatch-mode .mode-btn.active {
+    background: #2ecc71;
+    border-color: #2ecc71;
+    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+}
+
+body.stopwatch-mode .mode-btn:hover:not(.active) {
+    border-color: #2ecc71;
+    color: #2ecc71;
+}
+
+/* 精度切り替えトグル */
+.precision-toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem 0;
+}
+
+.toggle-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #4a5568;
+}
+
+.toggle-label input[type="checkbox"] {
+    display: none;
+}
+
+.toggle-slider {
+    position: relative;
+    width: 48px;
+    height: 24px;
+    background: #cbd5e0;
+    border-radius: 24px;
+    transition: all 0.3s ease;
+}
+
+.toggle-slider::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.toggle-label input[type="checkbox"]:checked + .toggle-slider {
+    background: #667eea;
+}
+
+/* ストップウォッチモード時のトグルスライダー */
+body.stopwatch-mode .toggle-label input[type="checkbox"]:checked + .toggle-slider {
+    background: #2ecc71;
+}
+
+.toggle-label input[type="checkbox"]:checked + .toggle-slider::after {
+    left: 26px;
+}
+
+.toggle-text {
+    user-select: none;
+}
+
+.timer-display {
+    font-size: 4rem;
+    font-weight: 800;
+    color: #2d3748;
+    margin: 2rem 0;
+    font-family: 'Monaco', 'Menlo', monospace;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.timer-display.warning {
+    color: #f56565;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.preset-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.preset-btn {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.preset-btn:hover {
+    background: #5a67d8;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+/* ストップウォッチモード時のボタン色 */
+body.stopwatch-mode .preset-btn {
+    background: #2ecc71;
+    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+}
+
+body.stopwatch-mode .preset-btn:hover {
+    background: #27ae60;
+    box-shadow: 0 6px 20px rgba(46, 204, 113, 0.4);
+}
+
+.preset-btn:active {
+    transform: translateY(0);
+}
+
+.custom-timer {
+    margin-bottom: 2rem;
+}
+
+.time-inputs {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.time-input {
+    width: 60px;
+    padding: 0.5rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.time-input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.time-separator {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #4a5568;
+}
+
+.control-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.control-btn {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;
+}
+
+.start-btn {
+    background: #48bb78;
+    color: white;
+    box-shadow: 0 4px 15px rgba(72, 187, 120, 0.3);
+}
+
+.start-btn:hover {
+    background: #38a169;
+    transform: translateY(-2px);
+}
+
+.pause-btn {
+    background: #ed8936;
+    color: white;
+    box-shadow: 0 4px 15px rgba(237, 137, 54, 0.3);
+}
+
+.pause-btn:hover {
+    background: #dd6b20;
+    transform: translateY(-2px);
+}
+
+.stop-btn {
+    background: #f56565;
+    color: white;
+    box-shadow: 0 4px 15px rgba(245, 101, 101, 0.3);
+}
+
+.stop-btn:hover {
+    background: #e53e3e;
+    transform: translateY(-2px);
+}
+
+.reset-btn {
+    background: #a0aec0;
+    color: white;
+    box-shadow: 0 4px 15px rgba(160, 174, 192, 0.3);
+}
+
+.reset-btn:hover {
+    background: #718096;
+    transform: translateY(-2px);
+}
+
+.fullscreen-btn {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    padding: 0.75rem;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.fullscreen-btn:hover {
+    background: white;
+    transform: scale(1.1);
+}
+
+.footer {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e2e8f0;
+    color: #718096;
+    font-size: 0.9rem;
+}
+
+.footer a {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* モバイル対応 */
+@media (max-width: 768px) {
+    .app-container {
+        padding: 1.5rem;
+        min-width: 95vw;
+    }
+
+    .timer-display {
+        font-size: 3rem;
+    }
+
+    .app-title {
+        font-size: 1.5rem;
+    }
+
+    .preset-buttons {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .control-btn {
+        min-width: 100px;
+        padding: 0.8rem 1rem;
+    }
+
+    .time-inputs {
+        gap: 0.3rem;
+    }
+
+    .time-input {
+        width: 50px;
+        font-size: 1rem;
+    }
+
+    .mode-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .toggle-label {
+        font-size: 0.9rem;
+    }
+}
+
+/* フルスクリーンモード */
+.fullscreen-mode {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #1a202c;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.fullscreen-mode .timer-display {
+    font-size: 6rem;
+    color: white;
+}
+
+.fullscreen-mode .timer-display.warning {
+    color: #ff6b6b;
+}
