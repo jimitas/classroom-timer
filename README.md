@@ -44,4 +44,4 @@
 - **GitHub**: [https://github.com/jimitas](https://github.com/jimitas)
 
 ## 📄 ライセンス
-MIT License - 教育目的での利用を推奨します
+MIT License - 教育目的での利用を推奨します# classroom-timer
